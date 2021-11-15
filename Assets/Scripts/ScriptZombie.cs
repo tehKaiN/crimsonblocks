@@ -109,9 +109,18 @@ public class ScriptZombie : MonoBehaviour
 
 	void OnCollisionEnter(Collision Col)
 	{
-		var Player = Col.collider.GetComponent<PlayerStuff>();
-		if(Player != null) {
-			m_TouchingPlayer = Player;
+		var Collider = Col.collider;
+		if(m_isAlive) {
+			var Player = Collider.GetComponent<PlayerStuff>();
+			if(Player != null) {
+				m_TouchingPlayer = Player;
+			}
+		}
+		else {
+			if(Collider.tag != "ground") {
+				Debug.Log("Destroyed by collision with non-ground");
+				Destroy(gameObject);
+			}
 		}
 	}
 
