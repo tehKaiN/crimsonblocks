@@ -6,13 +6,21 @@ public class ScriptZombie : MonoBehaviour
 {
 	private Rigidbody m_Rb;
 	private bool m_isAlive;
+	private bool m_isAboutToBeDestroyed;
 	private float m_fHp;
 	private float? m_fTimeToRotAnimEh;
 	private float m_fTimeLastBite;
 	private bool m_isAnimRotStarted = false;
 	private PlayerStuff m_TouchingPlayer = null;
-	public GameObject HomingTarget = null;
+	[SerializeField] GameObject HomingTarget = null;
+	[SerializeField] ParticleSystem PrefabBlood;
 	// Start is called before the first frame update
+
+	public void Initialize(GameObject Homing)
+	{
+		HomingTarget = Homing;
+	}
+
 	void Start()
 	{
 		m_fTimeLastBite = 0;
@@ -100,6 +108,7 @@ public class ScriptZombie : MonoBehaviour
 				m_isAlive = false;
 				var Level = GameObject.Find("LevelState").GetComponent<ScriptLevel>();
 				Level.scoreKill(10);
+				SpawnBlood();
 			}
 		}
 		if(!m_isAlive) {
@@ -118,8 +127,13 @@ public class ScriptZombie : MonoBehaviour
 		}
 		else {
 			if(Collider.tag != "ground") {
-				Debug.Log("Destroyed by collision with non-ground");
-				Destroy(gameObject);
+				// If colliding with multiple objects at once, emit blood only once
+				// to prevent slowdowns.
+				if(!m_isAboutToBeDestroyed) {
+					SpawnBlood();
+					Destroy(gameObject);
+					m_isAboutToBeDestroyed = true;
+				}
 			}
 		}
 	}
@@ -130,6 +144,14 @@ public class ScriptZombie : MonoBehaviour
 		if(Player != null && m_TouchingPlayer == Player) {
 			m_TouchingPlayer = null;
 		}
+	}
+
+	void SpawnBlood()
+	{
+		var Blood = Instantiate(
+			PrefabBlood, transform.position, PrefabBlood.transform.rotation
+		);
+		Blood.Play();
 	}
 
 }

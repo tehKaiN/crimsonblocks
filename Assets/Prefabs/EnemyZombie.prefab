@@ -241,6 +241,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   HomingTarget: {fileID: 0}
+  PrefabBlood: {fileID: 1608866815421126795, guid: 01cd94a6168d42b48ab60a8d21a53c0e, type: 3}
 --- !u!1 &5976943041094993093
 GameObject:
   m_ObjectHideFlags: 0

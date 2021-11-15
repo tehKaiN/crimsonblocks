@@ -31,7 +31,7 @@ public class ScriptEnemies : MonoBehaviour
 			);
 			var EnemyZombie = Enemy.GetComponent<ScriptZombie>();
 
-			EnemyZombie.HomingTarget = Homing;
+			EnemyZombie.Initialize(Homing);
 			// Debug.LogFormat("Spawned at {0}", Pos);
 			isSpawned = true;
 		}
