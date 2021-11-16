@@ -42,6 +42,13 @@ public class ScriptLevel : MonoBehaviour
 		Player.GetComponent<PlayerStuff>().reset();
 		m_Enemies.reset();
 
+		// Remove all pickups
+		var Pickups = GameObject.FindGameObjectsWithTag("pickup");
+		foreach(var Pick in Pickups) {
+			Destroy(Pick);
+		}
+
+		// Spawn weapon
 		var xRandom = Random.Range(-5.0f, 5.0f);
 		var zRandom = Random.Range(-5.0f, 5.0f);
 		var Pickup = Instantiate(PrefabPickup, new Vector3(xRandom, 0.0f, zRandom), Quaternion.identity);

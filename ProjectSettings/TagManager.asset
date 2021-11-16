@@ -9,6 +9,7 @@ TagManager:
   - bullet
   - FxTemporaire
   - player
+  - pickup
   layers:
   - Default
   - TransparentFX

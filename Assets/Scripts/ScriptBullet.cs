@@ -23,7 +23,7 @@ public class ScriptBullet : MonoBehaviour
 
 	void OnTriggerEnter(Collider Col)
 	{
-		if(Col.tag != "bullet") {
+		if(Col.tag != "bullet" && Col.tag != "pickup") {
 			Destroy(gameObject);
 			var Enemy = Col.GetComponent<ScriptZombie>();
 			if(Enemy != null) {
