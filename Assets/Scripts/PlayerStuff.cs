@@ -107,4 +107,9 @@ public class PlayerStuff : MonoBehaviour
 				break;
 		}
 	}
+
+	public float GetWeaponShotInterval()
+	{
+		return m_Weapon.ShotInterval;
+	}
 }

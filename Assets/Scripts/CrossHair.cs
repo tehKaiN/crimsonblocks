@@ -10,8 +10,9 @@ public class CrossHair : MonoBehaviour
 	private float? m_fPulseTime = null;
 
 	private const float m_fScaleDefault = .2f;
-	private const float m_fAnimTime = .5f;
 	private const float m_fAnimScale = .3f;
+
+	[SerializeField] PlayerStuff Player;
 
 	void OnMouse(InputValue Movement)
 	{
@@ -26,11 +27,12 @@ public class CrossHair : MonoBehaviour
 
 	void Update()
 	{
+		float fAnimTime = Player.GetWeaponShotInterval();
 		if(m_fPulseTime.HasValue) {
 			var fDelta = Time.time - m_fPulseTime.Value;
-			if(fDelta < m_fAnimTime) {
+			if(fDelta < fAnimTime) {
 				transform.localScale = Vector3.one * (
-					m_fScaleDefault + (m_fAnimTime - fDelta) / m_fAnimTime * m_fAnimScale
+					m_fScaleDefault + (fAnimTime - fDelta) / fAnimTime * m_fAnimScale
 				);
 			}
 			else {
