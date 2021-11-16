@@ -23,11 +23,12 @@ public class ScriptBullet : MonoBehaviour
 
 	void OnTriggerEnter(Collider Col)
 	{
-		// Debug.LogFormat("Collision with {0}", Col);
-		Destroy(gameObject);
-		var Enemy = Col.GetComponent<ScriptZombie>();
-		if(Enemy != null) {
-			Enemy.damage(m_InitialAngle);
+		if(Col.tag != "bullet") {
+			Destroy(gameObject);
+			var Enemy = Col.GetComponent<ScriptZombie>();
+			if(Enemy != null) {
+				Enemy.damage(m_InitialAngle);
+			}
 		}
 	}
 

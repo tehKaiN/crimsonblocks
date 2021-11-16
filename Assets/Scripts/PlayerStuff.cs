@@ -44,7 +44,7 @@ public class PlayerStuff : MonoBehaviour
 
 	public void reset()
 	{
-		m_Weapon = new Weapon(BulletPrefab, m_Projectiles);
+		m_Weapon = new WeaponShotgun(BulletPrefab, m_Projectiles);
 		m_isShooting = false;
 		m_Hp = 100;
 		m_isAlive = true;
