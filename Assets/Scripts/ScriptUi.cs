@@ -24,6 +24,7 @@ public class ScriptUi : MonoBehaviour
 
 	private MenuState m_eState;
 
+	// ENCAPSULATION
 	public MenuState State {
 		get {
 			return m_eState;

@@ -22,6 +22,7 @@ public class ScriptEnemies : MonoBehaviour
 		}
 	}
 
+	// ABSTRACTION
 	public bool spawn(GameObject Prefab, Vector3 Pos, GameObject Homing)
 	{
 		bool isSpawned = false;

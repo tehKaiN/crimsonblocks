@@ -1,5 +1,6 @@
 using UnityEngine;
 
+// INHERITANCE
 public class WeaponShotgun : Weapon
 {
   public WeaponShotgun(GameObject prefabBullet, ScriptProjectiles projectiles):
@@ -9,6 +10,7 @@ public class WeaponShotgun : Weapon
 		m_shotInterval = 1.0f;
 	}
 
+	// POLYMORPHISM
 	public override void Shoot(Transform transform)
 	{
 		for(int i = 0; i < 10; ++i) {
