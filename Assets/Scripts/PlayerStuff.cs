@@ -7,12 +7,15 @@ public class PlayerStuff : MonoBehaviour
 {
 	private Vector2 m_Input;
 	private Rigidbody m_Rb;
-	private float? m_fNextShotTimeEh;
+	private bool m_isShooting;
+	private float m_fNextShotTime;
 	private int m_Hp;
 	private bool m_isAlive;
-	public CrossHair Crosshair;
-	public GameObject BulletPrefab;
 	private ScriptProjectiles m_Projectiles;
+	private Weapon m_Weapon;
+
+	[SerializeField] CrossHair Crosshair;
+	[SerializeField] GameObject BulletPrefab;
 
 	public int Hp {
 		get {return m_Hp;}
@@ -28,13 +31,7 @@ public class PlayerStuff : MonoBehaviour
 
 	void OnFire(InputValue Fire)
 	{
-		// Debug.LogFormat("Fire event {0}", Fire.Get<float>());
-		if(Fire.Get<float>() > .0f) {
-			m_fNextShotTimeEh = Time.time;
-		}
-		else {
-			m_fNextShotTimeEh = null;
-		}
+		m_isShooting = (Fire.Get<float>() > .0f);
 	}
 
 	// Start is called before the first frame update
@@ -47,7 +44,8 @@ public class PlayerStuff : MonoBehaviour
 
 	public void reset()
 	{
-		m_fNextShotTimeEh = null;
+		m_Weapon = new Weapon(BulletPrefab, m_Projectiles);
+		m_isShooting = false;
 		m_Hp = 100;
 		m_isAlive = true;
 		transform.position = new Vector3(
@@ -68,10 +66,10 @@ public class PlayerStuff : MonoBehaviour
 		)));
 
 		// Shooting
-		if(m_fNextShotTimeEh.HasValue && Time.time >= m_fNextShotTimeEh) {
-			m_Projectiles.add(BulletPrefab, transform, 5.0f);
+		if(m_isShooting && Time.time >= m_fNextShotTime) {
+			m_Weapon.Shoot(transform);
+			m_fNextShotTime = Time.time + m_Weapon.ShotInterval;
 			Crosshair.pulseSize();
-			m_fNextShotTimeEh += .3f;
 		}
 	}
 
