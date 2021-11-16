@@ -44,7 +44,7 @@ public class PlayerStuff : MonoBehaviour
 
 	public void reset()
 	{
-		m_Weapon = new WeaponShotgun(BulletPrefab, m_Projectiles);
+		m_Weapon = new Weapon(BulletPrefab, m_Projectiles);
 		m_isShooting = false;
 		m_Hp = 100;
 		m_isAlive = true;
@@ -93,6 +93,18 @@ public class PlayerStuff : MonoBehaviour
 			if(m_Hp <= 0) {
 				m_isAlive = false;
 			}
+		}
+	}
+
+	public void EquipWeapon(PickupWeapon.WeaponType weaponType)
+	{
+		switch(weaponType) {
+			case PickupWeapon.WeaponType.Shotgun:
+				m_Weapon = new WeaponShotgun(BulletPrefab, m_Projectiles);
+				break;
+			default:
+				m_Weapon = new Weapon(BulletPrefab, m_Projectiles);
+				break;
 		}
 	}
 }

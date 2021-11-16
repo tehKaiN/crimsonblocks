@@ -11,11 +11,13 @@ public class ScriptLevel : MonoBehaviour
 	private int m_Kills;
 
 	private ScriptEnemies m_Enemies;
+	private ScriptUi m_Ui;
+
+	[SerializeField] GameObject PrefabPickup;
 
 	public GameObject PrefabZombie;
 	public GameObject Player;
 	public Camera Cam;
-	private ScriptUi m_Ui;
 
 	public int Kills {
 		get {return m_Kills;}
@@ -41,6 +43,11 @@ public class ScriptLevel : MonoBehaviour
 		// Reset the player state
 		Player.GetComponent<PlayerStuff>().reset();
 		m_Enemies.reset();
+
+		var xRandom = Random.Range(-5.0f, 5.0f);
+		var zRandom = Random.Range(-5.0f, 5.0f);
+		var Pickup = Instantiate(PrefabPickup, new Vector3(xRandom, 0.0f, zRandom), Quaternion.identity);
+		Pickup.GetComponent<PickupWeapon>().Initialize(PickupWeapon.WeaponType.Shotgun);
 	}
 
 	void Update()

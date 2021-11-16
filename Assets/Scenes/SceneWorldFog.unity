@@ -6019,6 +6019,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8d3002d1fc061624b8fa9e58a22a408e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  PrefabPickup: {fileID: 47068578236483813, guid: 5cac75ef24d67554c9308b561666d4da, type: 3}
   PrefabZombie: {fileID: 3012854900739142402, guid: 2717584d0911cfe42891b9b9fb5c477b, type: 3}
   Player: {fileID: 1466397842}
   Cam: {fileID: 963194227}
