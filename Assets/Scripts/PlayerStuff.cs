@@ -39,7 +39,7 @@ public class PlayerStuff : MonoBehaviour
 	{
 		m_Rb = GetComponent<Rigidbody>();
 		m_Projectiles = GameObject.Find("Projectiles").GetComponent<ScriptProjectiles>();
-		reset();
+		m_isAlive = false;
 	}
 
 	public void reset()

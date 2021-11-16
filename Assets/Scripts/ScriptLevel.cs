@@ -27,8 +27,6 @@ public class ScriptLevel : MonoBehaviour
 	{
 		m_Enemies = GameObject.Find("Enemies").GetComponent<ScriptEnemies>();
 		m_Ui = GameObject.Find("Canvas").GetComponent<ScriptUi>();
-
-		reset();
 	}
 
 	public void reset()

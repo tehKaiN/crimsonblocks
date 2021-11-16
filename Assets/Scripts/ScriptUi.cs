@@ -13,8 +13,7 @@ public class ScriptUi : MonoBehaviour
 	private Slider m_SliderHp;
 	private ScriptLevel m_Level;
 	private PlayerStuff m_Player;
-	private GameObject m_PanelPause;
-	private GameObject m_PanelDead;
+	private GameObject m_PanelPause, m_PanelDead, m_PanelTitle;
 
 	public enum MenuState {
 		Off,
@@ -34,6 +33,7 @@ public class ScriptUi : MonoBehaviour
 			// First, turn off all panels
 			m_PanelPause.SetActive(false);
 			m_PanelDead.SetActive(false);
+			m_PanelTitle.SetActive(false);
 
 			if(value == MenuState.Off) {
 				// Unpause
@@ -56,6 +56,7 @@ public class ScriptUi : MonoBehaviour
 						break;
 					case MenuState.Main:
 						// Show only main menu
+						m_PanelTitle.SetActive(true);
 						break;
 				}
 			}
@@ -71,8 +72,9 @@ public class ScriptUi : MonoBehaviour
 		m_Player = GameObject.Find("Player").GetComponent<PlayerStuff>();
 		m_PanelPause = GameObject.Find("PanelPause");
 		m_PanelDead = GameObject.Find("PanelDead");
+		m_PanelTitle = GameObject.Find("PanelTitle");
 
-		State = MenuState.Off;
+		State = MenuState.Main;
 	}
 
 	void Update()
